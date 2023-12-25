@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Text File</title>
+</head>
+<body>
+
+    <input type="file" id="fileInput" />
+    <button onclick="readFile()">Read File</button>
+    
+    <div id="fileContent"></div>
+
+    <script>
+        function readFile() {
+            var fileInput = document.getElementById('fileInput');
+            var fileContentDiv = document.getElementById('fileContent');
+
+            var file = fileInput.files[0];
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var content = e.target.result;
+                    fileContentDiv.innerText = content;
+                };
+
+                reader.readAsText(file);
+            } else {
+                fileContentDiv.innerText = "Please select a file.";
+            }
+        }
+    </script>
+
+</body>
+</html>
